@@ -1,0 +1,45 @@
+{%- extends "bootstrap/base.html" %}
+
+{% block title %}Ethers{% endblock %}
+
+{% import "bootstrap/fixes.html" as fixes %}
+{% import "bootstrap/utils.html" as utils %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block head %}
+{{super()}}
+{{fixes.ie8()}}
+{% block favicon %}<!-- default favicon could go here -->{% endblock %}
+{%- endblock %}
+
+{% block styles %}
+{{super()}}
+
+{% endblock %}
+
+{% block navbar %}
+{{nav.frontend_top.render()}}
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        {%- with messages = get_flashed_messages(with_categories=True) %}
+        {%- if messages %}
+            <div class="row">
+                <div class="col-md-12">
+                    {{utils.flashed_messages(messages=messages, dismissible=True)}}
+                </div>
+            </div>
+        {%- endif %}
+        {%- endwith %}
+        
+        <div class="jumbotron">
+            {% block jumbotext %}
+            {% endblock %}
+        </div>
+    </div>
+{%- endblock %}
+
+{% block scripts %}
+{{super()}}
+{% endblock %}
